@@ -5,7 +5,7 @@ from cvlite import *
 cv = cvlite()
 
 if __name__ == "__main__":
-	frames = cv.ReadVideo('../data/P1.mp4').readframes()
+	frames = cv.ReadPhoto('../data/phototest.jpg').show()
 
 	# disp init
 	disp = cv.Display('test platform', 1920//2, 1080//2)
