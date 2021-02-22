@@ -29,15 +29,17 @@ cvl = cvlite()
 #### Playing a Video File
 
 ReadVideo() is a handy function designed for reading videos.
-ReadPhoto() is a handy function designed for displaying a single frame.
+ReadPhoto() is a handy function designed for displaying a single frame, continuously.
 
-To play a video, initialize ReadVideo() and add your relative video file in the parantheses as a string. From there, you can do many different things with your video. We recommend importing sdl2 and sdl2.ext to blit a 3D frame to the screen:
+To play a video, initialize ReadVideo() and add your relative video file in the parantheses as a string. From there, you can do many different things with your video. We recommend pip installing sdl2 and sdl2.ext to blit a 3D frame to the screen:
 
 Before blitting, read the frames with a handy function called:
 
 ```python
-ReadVideo('path/to/file').readframes() # returns
+ReadVideo('path/to/file').readframes() # returns a matrix of frames
 ```
+
+Install SDL2 before running on a GUI:
 
 ```
 pip install PySDL2
@@ -46,7 +48,15 @@ pip install PySDL2
 Run this simple command to blit to the screen with our SDL2-based lightweight option:
 
 ```python
+cvl = cvlite()
+
 rv = ReadVideo('path/to/file').readframes()
 for frame in rv:
-	cvlite().blit(rv, '3D') # or 2D for 2D features
+	frame = cv.colorspace(frame, 'BGR')
+	cvl.blit(frame, '3D') # or 2D for 2D features
 ```
+
+## Additional Use
+#### What if I want to use cvlite with cv2?
+###### You can! Make sure that you initialize with cvlite first before using cv2 commands. We can't work with the encoding features that cv2 provides, but we've optimized our own numpy frame handling to function with both 2D and 3D environments, provided by Open CV.
+
