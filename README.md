@@ -28,6 +28,12 @@ cvl = cvlite()
 
 #### Playing a Video File
 
+Before running a video file, run the following to download the video encoder:
+
+```bash
+brew install ffmpeg
+```
+
 ReadVideo() is a handy function designed for reading videos.
 ReadPhoto() is a handy function designed for displaying a single frame, continuously.
 
