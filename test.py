@@ -5,12 +5,15 @@ from cvlite import *
 cv = cvlite()
 
 if __name__ == "__main__":
-	frames = cv.ReadVideo('../data/P1.mp4').readframes()
+	readvid = cv.ReadVideo('../data/P1.mp4')
+	frames = readvid.readframes()
 
 	# disp init
 	disp = cv.Display('test platform', 1920//2, 1080//2)
 
 	for frame in frames:
-		frame = cv.colorspace(frame, 'bgr')
 		frame = cv.resize(frame, 1920//2, 1080//2)
+
+		print(frame[0][0], frame[0][50])
 		disp.blit(frame, '3D')
+
