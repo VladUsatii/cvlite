@@ -2,7 +2,7 @@
 #
 # Computer Vision Lite
 #
-# A lightweight computer-vision library for fast, optimized, and challenging algorithmic tasks.
+# A lightweight computer-vision wrapper/library for fast, optimized, and challenging algorithmic tasks.
 #
 # By: Vlad Usatii
 #
@@ -69,8 +69,9 @@ class cvlite(object):
 
 				yield arr.reshape((int(self.size[1]), int(self.size[0]), 3))
 
-	def backgroundSubtractor(self, frame, r: int, g: int, b: int):
-		pass
+	def backgroundSubtractor(self, frame, threshold1: int, threshold2: int, new: int):
+		frame[(frame > threshold1) & (threshold2 < 150)] = new
+		return frame
 
 	#TODO: make this faster with CPython
 	def gaussianblur(self, frame, intensity: int):
