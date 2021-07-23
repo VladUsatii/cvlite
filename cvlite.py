@@ -52,7 +52,7 @@ class cvlite(object):
 		def __init__(self, src: str):
 			self.video = src
 			self.spec = [stream for stream in ffmpeg.probe(str(src))["streams"] if stream["codec_type"] == "video"]
-			self.size = [self.spec[0].get("width"), self.spec[0].get("height")]
+			self.size = (self.spec[0].get("height"), self.spec[0].get("width"), 3)
 			self.width = self.size[0]
 			self.height = self.size[1]
 			self.aspectratio = str(int((10 * (self.size[1]/self.size[0])) - (self.size[1]/self.size[0]))) + ":" + str(int(9))

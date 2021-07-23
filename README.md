@@ -54,12 +54,18 @@ pip install PySDL2
 Run this simple command to blit to the screen with our SDL2-based lightweight option:
 
 ```python
-cvl = cvlite()
+from cvlite import cvlite
+cv = cvlite()
 
-rv = ReadVideo('path/to/file').readframes()
-for frame in rv:
-	frame = cv.colorspace(frame, 'BGR')
-	cvl.blit(frame, '3D') # or 2D for 2D features
+if __name__ == "__main__":
+	video = cv.ReadVideo('../data/P1.mp4')
+	frames = video.readframes()
+
+	disp = cv.Display('test platform', 1920//2, 1080//2)
+
+	for frame in frames:
+		frame = cv.resize(frame, 1920//2, 1080//2)
+		disp.blit(frame, '3D')
 ```
 
 ## Additional Use
